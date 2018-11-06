@@ -69,3 +69,45 @@
 	foreign key (idFood) references dbo.Food(id)
  )
  go
+
+ insert into dbo.Account
+ (
+	UserName,
+	DisplayName,
+	PassWord,
+	Type
+ )
+ values
+ (
+	N'KT',
+	N'Kthinhsg21',
+	N'1',
+	1
+ )
+
+ insert into dbo.Account
+ (
+	UserName,
+	DisplayName,
+	PassWord,
+	Type
+ )
+ values
+ (
+	N'Employee',
+	N'Employee123',
+	N'1',
+	0
+ )
+
+create PROC USP_GetAccountByUserName
+@userName varchar(100)
+as
+begin
+	select * from dbo.Account where UserName = @userName
+end
+go
+
+exec dbo.USP_GetAccountByUserName @userName = N'KT'
+
+select * from Account
