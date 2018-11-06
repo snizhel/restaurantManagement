@@ -100,6 +100,21 @@
 	0
  )
 
+ insert into dbo.Account
+ (
+	UserName,
+	DisplayName,
+	PassWord,
+	Type
+ )
+ values
+ (
+	N'Admin',
+	N'Admin1',
+	N'Admin',
+	1
+ )
+
 create PROC USP_GetAccountByUserName
 @userName varchar(100)
 as
@@ -110,4 +125,3 @@ go
 
 exec dbo.USP_GetAccountByUserName @userName = N'KT'
 
-select * from Account

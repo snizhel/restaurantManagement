@@ -16,15 +16,6 @@ namespace RestaurantManagement
         public Admin()
         {
             InitializeComponent();
-            LoadAccountList();
-        }
-
-        void LoadAccountList()
-        {
-            string query = "exec dbo.USP_GetAccountByUserName @userName";
-            DataProvider provider = new DataProvider();
-
-            dtgvAccount.DataSource = provider.ExecuteQuery(query,new object[] {"KT"});
         }
     }
 }
