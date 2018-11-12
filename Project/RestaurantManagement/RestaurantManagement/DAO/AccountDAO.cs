@@ -31,9 +31,9 @@ namespace RestaurantManagement.DAO
         public bool Signin(string userName, string passWord)
         {
             string passEncode = MD5Hash(Base64Encode(passWord));
-            string query = "Select * from dbo.Account where UserName = N'" + userName +"' AND PassWord = N'" + passEncode + "' ";
+            string query = "usp_Login @userName , @passWord";
 
-            DataTable result = DataProvider.Instance.ExecuteQuery(query);
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] {userName, passEncode });
 
             return result.Rows.Count > 0;
         }

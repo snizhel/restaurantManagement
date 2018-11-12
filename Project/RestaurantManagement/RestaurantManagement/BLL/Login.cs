@@ -17,8 +17,26 @@ namespace RestaurantManagement
         {
             InitializeComponent();
         }
+        
+        bool Signin(string userName, string passWord)
+        {
+            return AccountDAO.Instance.Signin(userName, passWord);
+        }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(MessageBox.Show("Do you want to exit the program?", "Notification!" ,MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void MyLogin()
         {
             string userName = txbUserName.Text;
             string passWord = txbPassWord.Text;
@@ -35,22 +53,19 @@ namespace RestaurantManagement
             }
         }
 
-        bool Signin(string userName, string passWord)
+        private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            return AccountDAO.Instance.Signin(userName, passWord);
+            MyLogin();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Do you want to exit the program?", "Notification!" ,MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
-            {
-                e.Cancel = true;
-            }
+            MyLogin();
         }
     }
 }

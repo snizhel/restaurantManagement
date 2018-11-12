@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel20 = new System.Windows.Forms.Panel();
             this.dtgvTable = new System.Windows.Forms.DataGridView();
@@ -92,6 +93,7 @@
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.tcBill = new System.Windows.Forms.TabControl();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel28 = new System.Windows.Forms.Panel();
@@ -733,6 +735,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dtgvBill);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(6, 87);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(692, 385);
@@ -745,6 +748,15 @@
             this.dtgvBill.Name = "dtgvBill";
             this.dtgvBill.Size = new System.Drawing.Size(686, 379);
             this.dtgvBill.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Location = new System.Drawing.Point(206, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // tcBill
             // 
@@ -940,8 +952,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(736, 528);
             this.Controls.Add(this.tcBill);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ADMIN";
@@ -1087,5 +1101,6 @@
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.TextBox txbUserName;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button1;
     }
 }
