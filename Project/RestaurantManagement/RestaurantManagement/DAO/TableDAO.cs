@@ -17,7 +17,8 @@ namespace RestaurantManagement.DAO
             {
                 if (instance == null)
                     instance = new TableDAO();
-                return TableDAO.instance; }
+                return TableDAO.instance;
+            }
             private set
             {
                 TableDAO.instance = value;

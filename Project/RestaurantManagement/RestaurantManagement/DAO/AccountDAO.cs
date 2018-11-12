@@ -20,9 +20,12 @@ namespace RestaurantManagement.DAO
                 {
                     instance = new AccountDAO();
                 }
-                return instance;
+                return AccountDAO.instance;
             }
-            private set { instance = value; }
+            private set
+            {
+                instance = value;
+            }
         }
 
         private AccountDAO()

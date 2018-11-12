@@ -50,9 +50,8 @@ namespace RestaurantManagement.DTO
         private float totalPrice;
         public float TotalPrice
         {
-            get => totalPrice;
-            set => totalPrice = value;
+            get { return totalPrice; }
+            set { totalPrice = value; }
         }
-
     }
 }

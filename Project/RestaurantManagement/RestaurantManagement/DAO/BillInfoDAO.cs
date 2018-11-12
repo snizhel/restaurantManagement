@@ -20,9 +20,12 @@ namespace RestaurantManagement.DAO
                 {
                     instance = new BillInfoDAO();
                 }
-                return instance;
+                return BillInfoDAO.instance;
             }
-            private set { instance = value; }
+            private set
+            {
+                instance = value;
+            }
         }
 
         private BillInfoDAO()
@@ -41,6 +44,11 @@ namespace RestaurantManagement.DAO
             }
 
             return listBillInfor;
+        }
+
+        public void InsertBillInfo(int idBill, int idFood, int count)
+        {
+            DataProvider.Instance.ExecuteNonQuery("exec usp_InsertBillInfo @idBill , @idFood , @count ", new object[] { idBill, idFood, count });
         }
     }
 }
