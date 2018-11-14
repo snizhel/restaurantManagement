@@ -22,6 +22,7 @@ namespace RestaurantManagement
 
             LoadTable();
             LoadCategory();
+            LoadComboboxTable(cbSwitchTable);
         }
 
         #region Method
@@ -88,6 +89,12 @@ namespace RestaurantManagement
             //Thread.CurrentThread.CurrentCulture = culture;
             txbTotalPrice.Text = totalPrice.ToString("c",culture);
         }
+
+        void LoadComboboxTable(ComboBox cb)
+        {
+            cb.DataSource = TableDAO.Instance.LoadTableList();
+            cb.DisplayMember = "Name"; 
+        }
         #endregion
 
         #region Events
@@ -150,17 +157,34 @@ namespace RestaurantManagement
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
+
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+            int discount = (int)nmDisCount.Value;
+
+            string pr = txbTotalPrice.Text.Split(',')[0].Replace(".", "");
+            double totalPrice = Convert.ToDouble(pr);
+            double finalTotalPrice = totalPrice - (totalPrice / 100) * discount;
 
             if(idBill != -1)
             {
-                if(MessageBox.Show("Are you sure to check out the bill of "+ table.Name,"Notification",MessageBoxButtons.OKCancel)==System.Windows.Forms.DialogResult.OK)
+                if(MessageBox.Show(string.Format("Are you sure to check out the bill of {0}\nTotalPrice: {1}\nDiscount: {2}\nFinalPrice: {3} ",table.Name,totalPrice,discount,finalTotalPrice),"Notification",MessageBoxButtons.OKCancel)==System.Windows.Forms.DialogResult.OK)
                 {
-                    BillDAO.Instance.CheckOut(idBill);
+                    BillDAO.Instance.CheckOut(idBill,discount);
                     ShowBill(table.ID);
 
                     LoadTable();
                 }
+            }
+        }
+
+        private void btnSwitchTable_Click(object sender, EventArgs e)
+        {
+            int id1 = (lsvBill.Tag as Table).ID;
+            int id2 = (cbSwitchTable.SelectedItem as Table).ID;
+            if (MessageBox.Show(string.Format("Do you really want to switch {0} to {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Notification!",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            {
+                TableDAO.Instance.SwitchTable(id1, id2);
+                LoadTable();
             }
         }
         #endregion
