@@ -17,7 +17,8 @@ namespace RestaurantManagement.DAO
             {
                 if (instance == null)
                     instance = new TableDAO();
-                return TableDAO.instance; }
+                return TableDAO.instance;
+            }
             private set
             {
                 TableDAO.instance = value;
@@ -41,6 +42,11 @@ namespace RestaurantManagement.DAO
             }
 
             return tableList;
+        }
+
+        public void SwitchTable(int id1,int id2)
+        {
+            DataProvider.Instance.ExecuteQuery("usp_SwitchTable @idTable1, @idTable2", new object[] { id1, id2 });
         }
     }
 }

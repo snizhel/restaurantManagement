@@ -20,9 +20,12 @@ namespace RestaurantManagement.DAO
                 {
                     instance = new BillDAO();
                 }
-                return instance;
+                return BillDAO.instance;
             }
-            private set { instance = value; }
+            private set
+            {
+                instance = value;
+            }
         }
 
         private BillDAO()
@@ -44,6 +47,29 @@ namespace RestaurantManagement.DAO
                 return bill.ID;             // lấy id của bill
             }
             return -1;                      // id = -1 là ko có j hết
+        }
+
+        public void InsertBill(int id)
+        {
+            DataProvider.Instance.ExecuteNonQuery("exec usp_InsertBill @idTable", new object[] { id });
+        }
+
+        public int GetMaxIDBill()
+        {
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("select max(id) from dbo.Bill");
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        public void CheckOut(int id, int discount)
+        {
+            string query = "update dbo.Bill set status = 1, " + " discount = " + discount + " where id = " + id;
+            DataProvider.Instance.ExecuteNonQuery(query);
         }
     }
 }
