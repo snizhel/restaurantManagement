@@ -27,7 +27,7 @@ namespace RestaurantManagement.DAO
         private DataProvider()                      // hàm dựng để đảm bao bên ngoài ko thể tác động dc chỉ lấy ra thôi.
         {}
 
-        private string connectionSTR = "Data Source=DESKTOP-EAREARJ;Initial Catalog=RestaurantManagement;Integrated Security=True";
+        private string connectionSTR = "Data Source=DESKTOP-2TA5J07;Initial Catalog=RestaurantManagement;Integrated Security=True";
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)  //trả ra những dòng kết quả
         {
