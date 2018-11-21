@@ -53,6 +53,5 @@ namespace RestaurantManagement.DTO
             get { return totalPrice; }
             set { totalPrice = value; }
         }
-
     }
 }

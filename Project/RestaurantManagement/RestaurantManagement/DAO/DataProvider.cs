@@ -40,13 +40,14 @@ namespace RestaurantManagement.DAO
 
                 if (parameter != null)                                          // add dc n parameter
                 {
-                    string[] listPara = query.Split(' ');
+                    string[] listPara = query.Split(new Char[] {' ', ','});
                     int i = 0;
                     foreach (string item in listPara)
                     {
                         if (item.Contains('@'))
                         {
-                            command.Parameters.AddWithValue(item, parameter[i]);
+                            string text = parameter[i].ToString();
+                            command.Parameters.AddWithValue(item, text);
                             i++;
                         }
                     }
