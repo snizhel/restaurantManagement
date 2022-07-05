@@ -33,10 +33,10 @@ namespace RestaurantManagement.DAO
 
         public bool Signin(string userName, string passWord)
         {
-            string passEncode = MD5Hash(Base64Encode(passWord));
-            string query = "usp_Login @userName , @passWord";
+            //string passEncode = MD5Hash(Base64Encode(passWord));
+            string query = "exec usp_Login @userName ,@passWord ";
 
-            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] {userName, passEncode });
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] {userName, passWord });
 
             return result.Rows.Count > 0;
         }

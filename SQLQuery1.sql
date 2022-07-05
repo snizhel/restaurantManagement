@@ -98,11 +98,11 @@ create proc usp_InsertBill
 as
 begin
 	 insert dbo.Bill(DateCheckIn,DateCheckOut,idTable,status,discount)
-			values(GETDATE() , null , @idTable , 0, 0)
+			values(GETDATE() , null , @idTable , 0,0)
 end
 go
 
-alter proc usp_InsertBillInfo
+create proc usp_InsertBillInfo
 @idBill int, @idFood int, @count int
 as
 begin
